@@ -21,17 +21,23 @@ Applies on top of `typescript-standards.md`, which still governs general TypeScr
 ```text
 /apps/<system>/<component>/
 ├── app/                           # Routing only: pages, layouts, route groups, api/ route handlers
+├── api/                           # TanStack Query tier
+│   ├── api-client.ts              # Shared fetch helper: envelope/problem+json handling for every hook below
+│   └── resource-name/             # Query keys, useQuery/useMutation hooks, and DTOs for that resource
 ├── hooks/                         # Hooks/Providers/Contexts go here
 │   └── useHookName/               # Single file containing the hook plus any providers/context
 ├── components/                    # Shareable UI, nested by feature
 │   ├── weave-editor/              # A top-level, deep feature component; owns its own subcomponents
 │   └── shared/                    # Small, generic, reusable pieces with no feature ownership
+│       └── component-name/        # Every component gets its own folder, same rule as hooks/
 └── utils/                         # Pure helper functions, no React, no rendering side effects
 ```
 
 - `app/` contains routing and composition only — no business logic or shared UI. A page imports and composes components from `components/`; it doesn't define them inline.
+- `api/<resource>/` (e.g. `api/weaves/`) is the API tier: query keys, `useQuery`/`useMutation` hooks, and request/response types for that resource. Components consume these hooks, they don't call `fetch` or build query keys themselves.
 - `components/<feature>/` (e.g. `weave-editor/`) owns everything specific to that feature, nested as deep as needed. If a component only makes sense inside one feature, it lives there, not in `shared/`.
 - `components/shared/` is for components with no single feature owner and used across multiple features: modals, code editors, generic buttons, form fields, etc.
+- Every component gets its own folder named after it, same as `hooks/`, even single-file shared ones — no bare files directly in `shared/`.
 - `utils/` is framework-agnostic logic (formatting, mapping, calculations). Anything using React state or lifecycle belongs in a component or a hook, not here.
 
 ## Component Conventions
@@ -45,8 +51,9 @@ Applies on top of `typescript-standards.md`, which still governs general TypeScr
 - Fetch data in Server Components or route handlers for a page's initial load where possible; use TanStack Query on the client only for data that needs refetching, caching, pagination, or mutation after the initial load.
 - Seed TanStack Query's cache from server-fetched data (`HydrationBoundary`/`dehydrate`) rather than re-fetching on the client after hydration.
 - One `QueryClientProvider` at the root (client component), configured with the shared fetch helper below as the default fetcher/mutator.
-- The backend follows `api-standards.md`: expect the `{ data, meta }` envelope on success and RFC 9457 `application/problem+json` on error. Handle both in one shared fetch helper (e.g. `utils/api-client.ts`) used by every `useQuery`/`useMutation`, rather than re-parsing responses in every component.
-- Query keys are arrays scoped by resource and params (e.g. `['weaves', orgId, weaveId]`), defined alongside the hook that uses them, not hardcoded inline at each call site.
+- The backend follows `api-standards.md`: expect the `{ data, meta }` envelope on success and RFC 9457 `application/problem+json` on error. Handle both in one shared fetch helper (`api/api-client.ts`) used by every `useQuery`/`useMutation`, rather than re-parsing responses in every component.
+- All `useQuery`/`useMutation` hooks live in `api/<resource>/`, not inline in components — components call the hook, they don't assemble query keys or fetch calls themselves.
+- Query keys are arrays scoped by resource and params (e.g. `['weaves', orgId, weaveId]`), defined once in `api/<resource>/` and exported for reuse (e.g. cache invalidation from a mutation in the same resource).
 - `app/api/*` route handlers are for BFF-style concerns (aggregation, token exchange) only — not a substitute for calling the real backend API.
 
 ## State Management

@@ -152,11 +152,11 @@
           </mxCell>
         </object>
         <object placeholders="1" c4Type="Relationship" c4Description="Interacts with API" label="&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;" id="c4WKeDhGoVhOHapvThUu-4">
-          <mxCell edge="1" parent="1" source="c4WKeDhGoVhOHapvThUu-1" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;metaEdit=1;endSize=14;startSize=14;rounded=1;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;libavoidRouting=1;" target="c4WKeDhGoVhOHapvThUu-3">
+          <mxCell edge="1" parent="1" source="c4WKeDhGoVhOHapvThUu-1" style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;metaEdit=1;endSize=14;startSize=14;rounded=1;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;libavoidRouting=1;" target="c4WKeDhGoVhOHapvThUu-3">
             <mxGeometry relative="1" x="-0.105" as="geometry">
               <mxPoint y="-1" as="offset" />
               <Array as="points">
-                <mxPoint x="700.05" y="279.95" />
+                <mxPoint x="700.05" y="240.05" />
                 <mxPoint x="700.05" y="499.95" />
               </Array>
               <mxPoint x="780" y="280" as="sourcePoint" />
@@ -424,7 +424,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="FmYQMLd4xoTYItYEKPHB" name="system-integration">
-    <mxGraphModel dx="2480" dy="1370" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2170" dy="1199" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -579,6 +579,12 @@
             </mxGeometry>
           </mxCell>
         </object>
+        <mxCell id="hG7k9nQ1XWdL2CvILfAF-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="Private API only." vertex="1">
+          <mxGeometry height="50" width="60" x="600" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="hG7k9nQ1XWdL2CvILfAF-2" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=12;fillColor=#fff2cc;strokeColor=#d6b656;" value="Private API only." vertex="1">
+          <mxGeometry height="50" width="60" x="600" y="880" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
