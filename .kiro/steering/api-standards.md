@@ -3,7 +3,7 @@
 ## Style
 
 - APIs are RESTful: resources are nouns, HTTP methods express the action (`GET`, `POST`, `PATCH`, `DELETE`, `QUERY`).
-- Use plural resource names and nested resources for ownership (`/organisations/{orgId}/weaves/{weaveId}`).
+- Use plural resource names. Resources sit flat off the version, e.g. `/v1/weaves/{weaveId}`. The organisation is always established by the access token, never by a path parameter.
 - Use standard HTTP status codes; don't invent custom success/error codes in the body when a status code already conveys it.
 - `QUERY` is for searches whose filter criteria are too complex for a query string. It's safe and idempotent like `GET`, but carries a body. Never use it to mutate state.
 
